@@ -20,3 +20,6 @@ A lightweight and easy-to-use **Object-Relational Mapping (ORM)** tool that allo
 
 
 ## 🐣 Projects
+
+- 🗂️ **[Django model Basics LAB](https://github.com/Viktoria-Todorova/ORM/tree/master/02-lab-skeleton)** - exersised creating tables and migrating them to the DB
+- <img width="1798" height="250" alt="image" src="https://github.com/user-attachments/assets/2e90caa7-d784-4080-bca2-a62337e030b3" />
