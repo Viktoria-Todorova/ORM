@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import CharField
+
 
 # Create your models here.
 class Shoe(models.Model):
@@ -8,3 +10,61 @@ class Shoe(models.Model):
 #python manage.py makemigrations main_app --name migrate_unique_brands --empty
 class UniqueBrand(models.Model):
     brand = models.CharField(max_length=25)
+
+class EventRegistration(models.Model):
+    event_name = models.CharField(max_length=60)
+    participant_name = models.CharField(max_length=50)
+    registration_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.participant_name} - {self.event_name}"
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
+    release_year = models.PositiveIntegerField()
+    genre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'Movie "{self.title}" by {self.director}'
+
+
+class Student(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    age = models.PositiveIntegerField()
+    grade=models.CharField(max_length=10)
+    date_of_birth = models.DateField()
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=100)
+    contact_person = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=20, unique=True)
+    address =models.TextField()
+
+    def __str__(self):
+        return f'{self.name} - {self.phone}'
+
+class Course(models.Model):
+    title = models.CharField(max_length=90)
+    lecturer =models.CharField(max_length=90)
+    description=models.CharField(max_length=200)
+    price= models.DecimalField(decimal_places=2, max_digits=10)
+    start_date = models.DateField(auto_now_add=True)
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.title} - {self.lecturer}'
+
+class Person(models.Model):
+    name = models.CharField(max_length=40)
+    age = models.PositiveIntegerField()
+    age_group =CharField(max_length=20, default="No age group")
+
+    def __str__(self):
+        return f"Name: {self.name}"
