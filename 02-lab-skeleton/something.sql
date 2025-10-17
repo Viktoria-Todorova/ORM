@@ -1,1 +1,1 @@
-create database ex_2;
+create database lab_3;
