@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models import CharField
 
+from main_app.choices import OrderStatusChoices
+
 
 # Create your models here.
 class Shoe(models.Model):
@@ -68,3 +70,37 @@ class Person(models.Model):
 
     def __str__(self):
         return f"Name: {self.name}"
+
+class Item(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
+    quantity = models.PositiveIntegerField(default=1)
+    rarity = models.CharField(max_length=20,default="No rarity")
+
+
+
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+    ]
+
+    product_name = models.CharField(max_length=30)
+    customer_name = models.CharField(max_length=100)
+    order_date = models.DateField()
+    status = models.CharField(max_length=30, choices=OrderStatusChoices)
+    amount = models.PositiveIntegerField(default=1)
+    product_price = models.DecimalField(max_digits=10, decimal_places=2)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    warranty = models.CharField(max_length=100, default='No warranty')
+    delivery = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.product_name} - {self.customer_name}"
+
+
+class Smartphone(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(decimal_places=2, max_digits=10,default=0)
+    category = models.CharField(max_length=20, default="No category")
