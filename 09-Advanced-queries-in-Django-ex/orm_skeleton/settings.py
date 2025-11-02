@@ -77,22 +77,14 @@ WSGI_APPLICATION = 'orm_skeleton.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ex_9',
+        'USER': 'postgres',
+        'PASSWORD': '200697',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "",
-#         "USER": "",
-#         "PASSWORD": "",
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#     }
-# }
-
 
 
 # Password validation
