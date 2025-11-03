@@ -14,15 +14,18 @@
         Session = sessionmaker(engine=engine)
         session = Session()
 """
+import os
 from typing import List, Type
 
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from helpers import handle_session
 from models import Recipe, Chef
 
-engine = create_engine('postgresql+psycopg2://postgres:200697@localhost/sql_alchemy_ex')
+load_dotenv()
+engine = create_engine(f'postgresql+psycopg2://{os.getenv("DB_USER")}:{os.getenv("DB_PASS")}@localhost/sql_alchemy_ex')
 Session = sessionmaker(bind=engine)
 session = Session()
 
