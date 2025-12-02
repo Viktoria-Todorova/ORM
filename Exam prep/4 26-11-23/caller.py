@@ -116,3 +116,29 @@ def ban_author(email=None):
 
 # print(ban_author(email='alice@mail.com'))
 
+#extra practice
+def get_review_with_author_info_and_article_title():
+    reviews = Review.objects.select_related('author', 'article').all()
+    final_line = []
+
+    for r in reviews:
+        final_line.append(f'The author name is: {r.author.full_name} '
+                          f'\nThe article title is: {r.article.title} '
+                          f'\nThe content is: {r.content}')
+
+    return '\n'.join(final_line)
+
+# print(get_review_with_author_info_and_article_title())
+
+def get_all_articles_with_authors_info():
+    articles = Article.objects.prefetch_related('authors').all()
+
+    final_line = []
+    for article in articles:
+        final_line.append(f'The article is: {article.title} ')
+        for author in article.authors.all():
+            final_line.append(f'-The author is: {author.full_name} ')
+
+    return '\n'.join(final_line)
+
+# print(get_all_Articles_with_authorsinfo())
